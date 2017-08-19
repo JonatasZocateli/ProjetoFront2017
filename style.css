@@ -164,16 +164,7 @@ z-index: 999;}
 
 .slide-text {display: table-cell;vertical-align: middle}
 
-.zigzag-bottom {
-background: none repeat scroll 0 0 #1abc9c;
-bottom: -80px;
-height: 165px;
-left: -5%;
-position: absolute;
-transform: rotate(3deg);
-width: 108%;
-z-index: 9;
-}
+
 
 .slide-bg {
   height: 100%;
@@ -573,12 +564,8 @@ width: 10px;
 .single-product-area .zigzag-bottom {background-color: #333333}
 
 .single-product-area {
-  padding: 80px 0 130px;
+  --padding: 80px 0 130px;
 }
-
-
-
-
 
 .sidebar-title {
     color: #3dc6ab;
