@@ -30,7 +30,7 @@
     <![endif]-->
   </head>
   <body>
-    
+   
      <div class="site-branding-area">
         <div class="container">
             <div class="row">
@@ -63,7 +63,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="index.html">Home</a></li>
-                        <li class="active"><a href="shop.html">Produtos</a></li>
+                        <li><a href="shop.html">Produtos</a></li>
                         <!--<li><a href="single-product.html">Single product</a></li>
                         <li><a href="cart.html">Cart</a></li>
                         <li><a href="checkout.html">Checkout</a></li>
@@ -75,102 +75,86 @@
             </div>
         </div>
     </div> <!-- End mainmenu area -->
-    <!--
-    <div class="product-big-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                        <h2>Shop</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
--->
-    
+             
     <div class="single-product-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="img/cenouras.jpg" alt="">
-                        </div>
-						<span class="hidden" id="codProduto">1</span>
-                        <h2><a href="cenoura.html">Cenoura</a></h2>
-                        <div class="product-carousel-price">
-                            <ins>R$7,50</ins> <del>R$9,00</del>
-                        </div>                          
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="img/beterrabas.jpg" alt="">
-                        </div>
-                        <h2><a href="beterraba.html">Beterraba</a></h2>
-                        <div class="product-carousel-price">
-                             <ins>R$5,89</ins> <del>R$6,30</del>
-                        </div>  
-                                           
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="img/tomates.jpg" alt="">
-                        </div>
-                        <h2><a href="tomate.html">Tomate</a></h2>
-                        <div class="product-carousel-price">
-                             <ins>R$5,89</ins> <del>R$6,30</del>
-                        </div>                       
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="img/maracujas.jpg" alt="">
-                        </div>
-                        <h2><a href="maracuja.html">Maracujá</a></h2>
-                        <div class="product-carousel-price">
-                             <ins>R$5,89</ins> <del>R$6,30</del>
-                        </div>                      
-                    </div>
-                </div>
-                
-            
-            <div class="row">
+            <div class="row">                               
                 <div class="col-md-12">
-                    <div class="product-pagination text-center">
-                        <nav>
-                          <ul class="pagination">
-                            <li>
-                              <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                              </a>
-                            </li>
-                            <li><a href="#">1</a></li>
-                            <!--<li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>-->
-                            <li>
-                              <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </nav>                        
-                    </div>
+                    <div class="product-content-right">                        
+						<br/>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="product-images">
+                                    <div class="product-main-img">
+                                        <img src="img/beterrabas.jpg" alt="">
+                                    </div>                                                                        
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-6">
+                                <div class="product-inner">
+									<span class="hidden" id="codProduto">2</span>
+                                    <h2 class="product-name"><span id="nomeProduto">Beterraba - Kg</span></h2>
+                                    <div class="product-inner-price">
+                                        <ins><span id="precoProduto">R$5,89</span></ins><del><span>R$6,30</span></del>
+                                    </div>                                        
+                                    <form action="" class="cart">
+                                        <div class="quantity">
+                                            <input type="number" size="4" id="qtdProduto" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                                            <!--<input type="hidden" size="4" class="product-id" title="Qty" id="" value="cenoura">-->
+                                        </div>
+                                        <button class="add_to_cart_button" type="submit">adicionar ao carrinho</button>
+                                    </form>   
+                                    
+                                    <div class="product-inner-category">
+                                        <p>Category: Apiaceae</p>
+                                    </div> 
+                                    
+                                    <div role="tabpanel">
+                                        <ul class="product-tab" role="tablist">
+                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Saiba Mais</a></li>                                           
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                                <h2>Beterraba</h2>  
+                                                <p>A beterraba é um tubérculo levemente adocicado, e possui várias propriedades nutritivas e medicinais. Ela é bastante versátil, podendo ser consumida crua, grelhada, cozida, assada ou em forma de sucos.</p>
+                                                <p>A beterraba é um alimento bem pouco calórico: 40 calorias para cada 100 gramas. Contém na beterraba antioxidantes( carotenoides, flavonoides), minerais (zinco, magnésio, fósforo, potássio e ferro) e vitaminas (A, complexo B, e vitamina C).Tem ação anti-inflamatória, revitalizante, diurética, digestiva, tônica, desintoxicante natural e purificadora do sangue.</p>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="profile">
+                                                <h2>Reviews</h2>
+                                                <div class="submit-review">
+                                                    <p><label for="name">Name</label> <input name="name" type="text"></p>
+                                                    <p><label for="email">Email</label> <input name="email" type="email"></p>
+                                                    <div class="rating-chooser">
+                                                        <p>Your rating</p>
+
+                                                        <div class="rating-wrap-post">
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                        </div>
+                                                    </div>
+                                                    <p><label for="review">Your review</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
+                                                    <p><input type="submit" value="Submit"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>                                                                        
+                    </div>                    
                 </div>
             </div>
         </div>
     </div>
 
 
-    <div class="footer-top-area">
+     <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">

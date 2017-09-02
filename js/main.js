@@ -93,11 +93,15 @@ jQuery(document).ready(function($){
     // add product to cart
     $('.add_to_cart_button').bind('click', function(event) {		
 		event.preventDefault();
-		$.ajax('http://jsonplaceholder.typicode.com/posts',{
+				
+		var codProduto = document.getElementById("codProduto").innerHTML				
+		var qtdProduto = document.getElementById("qtdProduto").value
+						
+		$.ajax('http://982590b3.ngrok.io/carts',{
 			method: 'POST',
 			data: {
-				product_id: '',
-				quantity: 'bar'				
+				product_id: codProduto,
+				quantity: qtdProduto				
 			}			
 		}).then(function(data){			
 			console.log(data);
@@ -119,18 +123,30 @@ jQuery(document).ready(function($){
     });	
     
     // Bootstrap ScrollPSY
-    $('body').scrollspy({ 
+    $('body').scrollspy({
         target: '.navbar-collapse',
         offset: 95
     }) 
 	
 		
 	//carrregar elemento carrinho
-	$.getJSON('https://jsonplaceholder.typicode.com/posts',function(data){
-		
+	$.ajax('http://982590b3.ngrok.io/carts',{
+			method: 'GET',
+			xhrFields: {
+				withCredentials: true
+			}
+	}).then(function(data) {				
+		console.log(data)							
+						
 		var total_price = data["total_price"]
 		var total_quantity = data["total_quantity"]
 		
+		//var total_price = 300
+		//var total_quantity = 1
+		
+		$("#valorTotal").html(total_price);
+		$("#quantidadeCarrinho").html(total_quantity);
+										
 	})
 
 

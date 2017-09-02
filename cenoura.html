@@ -42,7 +42,7 @@
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Carrinho - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="cart.html">Carrinho - <span class="cart-amunt" id="valorTotal">$0</span> <i class="fa fa-shopping-cart"></i> <span class="product-count" id="quantidadeCarrinho">0</span></a>
                     </div>
                 </div>
             </div>
@@ -94,14 +94,14 @@
                             
                             <div class="col-sm-6">
                                 <div class="product-inner">
-                                    <h2 class="product-name">Cenoura - Kg</h2>
+									<span class="hidden" id="codProduto">1</span>
+                                    <h2 class="product-name"><span id="nomeProduto">Cenoura - Kg</span></h2>
                                     <div class="product-inner-price">
-                                        <ins>R$7,50</ins> <del>R$9,00</del>
-                                    </div>    
-                                    
+                                        <ins><span id="precoProduto">R$7,50</span></ins><del><span>R$9,00</span></del>
+                                    </div>                                        
                                     <form action="" class="cart">
                                         <div class="quantity">
-                                            <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                                            <input type="number" size="4" id="qtdProduto" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
                                             <!--<input type="hidden" size="4" class="product-id" title="Qty" id="" value="cenoura">-->
                                         </div>
                                         <button class="add_to_cart_button" type="submit">adicionar ao carrinho</button>
