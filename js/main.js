@@ -21,8 +21,8 @@ jQuery(document).ready(function($){
                 items:5,
             }
         }
-    });  
-    
+    });           				       
+	
     $('.related-products-carousel').owlCarousel({
         loop:true,
         nav:true,
@@ -83,6 +83,64 @@ jQuery(document).ready(function($){
     $('body').scrollspy({ 
         target: '.navbar-collapse',
         offset: 95
-    })      
+    })  
+	
+	 // Bootstrap Mobile Menu fix
+    $(".navbar-nav li a").click(function(){
+        $(".navbar-collapse").removeClass('in');
+    });    
+    
+    // add product to cart
+    $('.add_to_cart_button').bind('click', function(event) {		
+		event.preventDefault();
+		$.ajax('http://jsonplaceholder.typicode.com/posts',{
+			method: 'POST',
+			data: {
+				product_id: '',
+				quantity: 'bar'				
+			}			
+		}).then(function(data){			
+			console.log(data);
+		})        
+    });  
+
+    // edit product to cart
+    $('.edit_cart_button').bind('click', function(event) {		
+		event.preventDefault();
+		$.ajax('http://jsonplaceholder.typicode.com/posts',{
+			method: 'PATCH',
+			data: {
+				product_id: '',
+				quantity: 'bar'				
+			}			
+		}).then(function(data){			
+			console.log(data);
+		})        
+    });	
+    
+    // Bootstrap ScrollPSY
+    $('body').scrollspy({ 
+        target: '.navbar-collapse',
+        offset: 95
+    }) 
+	
+		
+	//carrregar elemento carrinho
+	$.getJSON('https://jsonplaceholder.typicode.com/posts',function(data){
+		
+		var total_price = data["total_price"]
+		var total_quantity = data["total_quantity"]
+		
+	})
+
+
+
+
+
+
+
+
+
+    
 });
 
