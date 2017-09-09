@@ -39,12 +39,7 @@
                         <img src="img/logo-organikos.jpg" width="320px" height="450px" alt="">
                     </div>
                 </div>
-                
-                <div class="col-sm-6">
-                    <div class="shopping-item">
-                        <a href="cart.html">Carrinho - <span class="cart-amunt" id="valorTotal">$0</span> <i class="fa fa-shopping-cart"></i> <span class="product-count" id="quantidadeCarrinho">0</span></a>
-                    </div>
-                </div>
+                                
             </div>
         </div>
     </div> <!-- End site branding area -->   
@@ -87,40 +82,14 @@
                                     <thead>
                                         <tr>
                                             <th class="product-remove">&nbsp;</th>
-                                            <th class="product-thumbnail" colspan="2">Produto</th>                                           
+                                            <th class="product-thumbnail">Produto</th>                                           
                                             <th class="product-price">Preço Unitário</th>
                                             <th class="product-quantity">Quantidade</th>
                                             <th class="product-subtotal">Total</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr class="cart_item">
-                                            <td class="product-remove">
-                                                <a title="Remover do carrinho" class="remove" href="#">×</a> 
-                                            </td>
-
-											<td class="product-name">
-                                                <a href="single-product.html">Cenoura - Kg</a> 
-                                            </td>
-											
-                                            <td class="product-thumbnail">
-                                                <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/cenouras.jpg"></a>
-                                            </td>                                            
-
-                                            <td class="product-price">
-                                                <span class="amount">R$ 7,50</span> 
-                                            </td>
-
-                                            <td class="product-quantity">
-                                                <div class="quantity buttons_added">                                                    
-                                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="1" min="0" step="1">                                                    
-                                                </div>
-                                            </td>
-
-                                            <td class="product-subtotal">
-                                                <span class="amount">R$ 7,50</span> 
-                                            </td>
-                                        </tr>    																										
+                                    <tbody id="lista">
+                                         																				
                                     </tbody>
                                 </table>
 								<div id="customer_details" class="col2-set">
@@ -251,5 +220,7 @@
     
     <!-- Main Script -->
     <script src="js/main.js"></script>
+	
+	
   </body>
 </html>

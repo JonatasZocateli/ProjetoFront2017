@@ -90,12 +90,13 @@ jQuery(document).ready(function($){
 
   // add product to cart
   $('.add_to_cart_button').bind('click', function(event) {
+	  
     event.preventDefault();
 
     var codProduto = document.getElementById("codProduto").innerHTML
     var qtdProduto = document.getElementById("qtdProduto").value
 
-    $.ajax('http://7882d28e.ngrok.io/carts', {
+    $.ajax('http://5e605a36.ngrok.io/carts', {
       method: 'POST',
       data: {
         product_id: codProduto,
@@ -116,25 +117,32 @@ jQuery(document).ready(function($){
   });
 
   // edit product to cart
-  $('.edit_cart_button').bind('click', function(event) {
+  $('.quantidadeProdutoCarrinho').bind('keyup mouseup', function(event) {	 
+  
+	 alert("ERoooooouuu");
+  
     event.preventDefault();
-    $.ajax('http://7882d28e.ngrok.io/carts',{
+
+    $.ajax('http://5e605a36.ngrok.io/carts',{
+		
       method: 'PATCH',
       data: {
-        product_id: '',
-        quantity: 'bar'
+        product_id: '1',
+        quantity: '200'
       },
       xhrFields: {
         withCredentials: true
       }
     }).then(function(data){
-      console.log(data);
-
+	
+	 
+      alert(data);
+		/*
       var total_price = data["total_price"]
       var total_quantity = data["total_quantity"]
 
       $("#valorTotal").html(total_price);
-      $("#quantidadeCarrinho").html(total_quantity);
+      $("#quantidadeCarrinho").html(total_quantity);*/
     })
   });
 
@@ -146,7 +154,7 @@ jQuery(document).ready(function($){
 
 
   //carrregar elemento carrinho
-  $.ajax('http://7882d28e.ngrok.io/carts',{
+  $.ajax('http://5e605a36.ngrok.io/carts',{
     method: 'GET',
     xhrFields: {
       withCredentials: true
@@ -157,10 +165,90 @@ jQuery(document).ready(function($){
     var total_price = data["total_price"]
     var total_quantity = data["total_quantity"]
 
-    //var total_price = 300
-    //var total_quantity = 1
-
     $("#valorTotal").html(total_price);
     $("#quantidadeCarrinho").html(total_quantity);
   })
+  
+   //carrregar lista dos produtos no carrinho
+  $.ajax('http://5e605a36.ngrok.io/carts',{
+    method: 'GET',
+    xhrFields: {
+      withCredentials: true
+    }
+  }).then(function(data) {
+    console.log(data)
+
+    var products = data["products"]
+	var quantidadeProdutos = products.length;
+	
+	var produtoLista = [];
+	var totalCarrinho = 0;
+	//Carregar a lista do carrinho formantando numa tabela
+	for(var i=0; i < quantidadeProdutos; i++){
+		
+		var id = products[i].id
+		var nome = products[i].name
+		var preco = products[i].price
+		var quantidade = products[i].quantity
+		var subtotal = products[i].price * products[i].quantity;
+		totalCarrinho += subtotal;
+		
+		var strHtml = 
+					'<tr class="cart_item" id='+id+'>'+ 
+					'<td class="product-remove">'+
+						'<a title="Remover do carrinho" class="remove" href="#">×</a>' +
+					'</td>'+
+
+					'<td class="product-name">'+
+						'<a href="single-product.html" id="nomeProdutoCarrinho">' + nome + '</a>'+ 
+					'</td>'+											                                                              
+					
+					'<td class="product-price">'+
+						'<span class="amount" id="precoProdutoCarrinho">R$ ' + preco + '</span>'+ 
+					'</td>'+
+
+					'<td class="product-quantity">'+
+						'<div class="quantity buttons_added">'+                                                    
+							'<input type="number" size="2" id="quantidadeProdutoCarrinho" value="'+quantidade+'" class="input-text qty text" title="Qty" min="0" step="1">'+                                       
+						'</div>'+
+					'</td>'+
+
+					'<td class="product-subtotal">'+
+						'<span class="amount" id="subtotalProduto">R$ '+ subtotal + '</span>'+ 
+					'</td>'+
+					
+					'</tr>'
+					
+				produtoLista.push(strHtml);
+		
+	}
+	
+	var linhaTotalizada = 
+					'<tr class="cart_item">'+ 
+					'<td class="product-remove">'+
+						
+					'</td>'+
+
+					'<td class="product-name">'+
+						
+					'</td>'+											                                                              
+					
+					'<td class="product-price">'+
+						
+					'</td>'+
+
+					'<td class="product-quantity">'+						
+						'<th class="product-subtotal">R$ '+ totalCarrinho + '</th>'
+					'</td>'+					
+					
+					'</tr>';
+					
+	produtoLista.push(linhaTotalizada);
+	
+	//Enviar tabela para html
+	$("#lista").html(produtoLista);	
+			
+   
+  })
+  
 });
