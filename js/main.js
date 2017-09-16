@@ -60,6 +60,9 @@ jQuery(document).ready(function($){
     }
   });
 
+  $("input[value='Pagamento']").click(function() {
+    window.location.href = '/checkout.html'
+  });
 
   // Bootstrap Mobile Menu fix
   $(".navbar-nav li a").click(function(){
