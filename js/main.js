@@ -99,7 +99,7 @@ jQuery(document).ready(function($){
     var codProduto = document.getElementById("codProduto").innerHTML
     var qtdProduto = document.getElementById("qtdProduto").value
 
-    $.ajax('http://5e605a36.ngrok.io/carts', {
+    $.ajax('http://77083b84.ngrok.io/carts', {
       method: 'POST',
       data: {
         product_id: codProduto,
@@ -117,6 +117,34 @@ jQuery(document).ready(function($){
       $("#valorTotal").html(total_price);
       $("#quantidadeCarrinho").html(total_quantity);
     })
+  });
+  
+  // delete product from cart
+   $(document).ready(function(){
+    $(document).on('click', '.delete_cart_button', function(){
+	
+    event.preventDefault();
+	
+	var codProduto = event.target.dataset.id;
+	console.log(codProduto);
+	
+    $.ajax('http://77083b84.ngrok.io/carts', {
+      method: 'delete',
+      data: {
+        product_id: codProduto
+      },
+      xhrFields: {
+        withCredentials: true
+      }
+    }).then(function(data){
+      console.log(data);
+
+    })
+	
+	location.reload();
+	
+	})
+	
   });
 
   // edit product to cart
@@ -157,7 +185,7 @@ jQuery(document).ready(function($){
 
 
   //carrregar elemento carrinho
-  $.ajax('http://5e605a36.ngrok.io/carts',{
+  $.ajax('http://77083b84.ngrok.io/carts',{
     method: 'GET',
     xhrFields: {
       withCredentials: true
@@ -173,7 +201,7 @@ jQuery(document).ready(function($){
   })
   
    //carrregar lista dos produtos no carrinho
-  $.ajax('http://5e605a36.ngrok.io/carts',{
+  $.ajax('http://77083b84.ngrok.io/carts',{
     method: 'GET',
     xhrFields: {
       withCredentials: true
@@ -199,9 +227,8 @@ jQuery(document).ready(function($){
 		var strHtml = 
 					'<tr class="cart_item" id='+id+'>'+ 
 					'<td class="product-remove">'+
-						'<a title="Remover do carrinho" class="remove" href="#">×</a>' +
+						'<a title="Remover do carrinho" class="delete_cart_button" data-id="'+id+'" href="#">×</a>' +
 					'</td>'+
-
 					'<td class="product-name">'+
 						'<a href="single-product.html" id="nomeProdutoCarrinho">' + nome + '</a>'+ 
 					'</td>'+											                                                              
