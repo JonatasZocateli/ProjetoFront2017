@@ -60,6 +60,24 @@ jQuery(document).ready(function($){
     }
   });
 
+  $('#place_order').click(function (e) {
+    e.preventDefault()
+    $.ajax('http://75a250af.ngrok.io/orders', {
+      method: 'POST',
+      data: {
+        name: '',
+        cc_number: '',
+        cc_cvv: '',
+        email: 'user@example.com'
+      },
+      xhrFields: {
+        withCredentials: true
+      }
+    }).then(function(data){
+      console.log(data)
+    })
+  })
+
   $("input[value='Pagamento']").click(function() {
     window.location.href = '/checkout.html'
   });
@@ -99,7 +117,7 @@ jQuery(document).ready(function($){
     var codProduto = document.getElementById("codProduto").innerHTML
     var qtdProduto = document.getElementById("qtdProduto").value
 
-    $.ajax('http://77083b84.ngrok.io/carts', {
+    $.ajax('http://75a250af.ngrok.io/carts', {
       method: 'POST',
       data: {
         product_id: codProduto,
@@ -154,7 +172,7 @@ jQuery(document).ready(function($){
   
     event.preventDefault();
 
-    $.ajax('http://5e605a36.ngrok.io/carts',{
+    $.ajax('http://75a250af.ngrok.io/carts',{
 		
       method: 'PATCH',
       data: {
@@ -185,7 +203,7 @@ jQuery(document).ready(function($){
 
 
   //carrregar elemento carrinho
-  $.ajax('http://77083b84.ngrok.io/carts',{
+  $.ajax('http://75a250af.ngrok.io/carts',{
     method: 'GET',
     xhrFields: {
       withCredentials: true
@@ -201,7 +219,7 @@ jQuery(document).ready(function($){
   })
   
    //carrregar lista dos produtos no carrinho
-  $.ajax('http://77083b84.ngrok.io/carts',{
+  $.ajax('http://75a250af.ngrok.io/carts',{
     method: 'GET',
     xhrFields: {
       withCredentials: true
