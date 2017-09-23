@@ -62,7 +62,7 @@ jQuery(document).ready(function($){
 
   $('#place_order').click(function (e) {
     e.preventDefault()
-    $.ajax('http://75a250af.ngrok.io/orders', {
+    $.ajax('http://8c5581b0.ngrok.io/orders', {
       method: 'POST',
       data: {
         name: '',
@@ -78,10 +78,11 @@ jQuery(document).ready(function($){
     })
   })
 
+  /*
   $("input[value='Pagamento']").click(function() {
     window.location.href = '/checkout.html'
   });
-
+*/
   // Bootstrap Mobile Menu fix
   $(".navbar-nav li a").click(function(){
     $(".navbar-collapse").removeClass('in');
@@ -117,7 +118,7 @@ jQuery(document).ready(function($){
     var codProduto = document.getElementById("codProduto").innerHTML
     var qtdProduto = document.getElementById("qtdProduto").value
 
-    $.ajax('http://75a250af.ngrok.io/carts', {
+    $.ajax('http://8c5581b0.ngrok.io/carts', {
       method: 'POST',
       data: {
         product_id: codProduto,
@@ -137,6 +138,62 @@ jQuery(document).ready(function($){
     })
   });
   
+   // finish
+  $('.finish').bind('click', function(event) {
+	  
+    event.preventDefault();
+
+    alert("Finalizou");
+
+    $.ajax('http://8c5581b0.ngrok.io/confirm', {
+      method: 'POST',
+      xhrFields: {
+        withCredentials: true
+      }
+    }).then(function(data){
+		window.location.href = '/final.html';
+    })
+  });
+  
+    // add address to cart
+   $(document).ready(function(){
+    $(document).on('click', '.add_address', function(){
+	  
+    event.preventDefault();
+
+	if(validar()){
+		    
+		$.ajax('http://8c5581b0.ngrok.io/orders', {
+		  method: 'POST',
+		  data: {
+				nome: document.getElementById("txtNome").value,
+				logradouro: document.getElementById("txtLogradouro").value,
+				numero: document.getElementById("txtNumero").value,
+				cep: document.getElementById("txtCep").value,
+				cidade: document.getElementById("txtCidade").value,
+				email: document.getElementById("txtEmail").value,
+				telefone: document.getElementById("txtTelefone").value
+		  },
+		  xhrFields: {
+			withCredentials: true
+		  }
+		}).then(function(data){
+			
+			console.log(data);
+			window.location.href = '/checkout.html';
+		  
+		})
+		
+		
+	} else {
+	
+		alert("Todos os campos devem ser preenchidos.")
+	
+	}
+	
+	  });
+  });
+  
   // delete product from cart
    $(document).ready(function(){
     $(document).on('click', '.delete_cart_button', function(){
@@ -146,7 +203,7 @@ jQuery(document).ready(function($){
 	var codProduto = event.target.dataset.id;
 	console.log(codProduto);
 	
-    $.ajax('http://77083b84.ngrok.io/carts', {
+    $.ajax('http://8c5581b0.ngrok.io/carts', {
       method: 'delete',
       data: {
         product_id: codProduto
@@ -168,11 +225,10 @@ jQuery(document).ready(function($){
   // edit product to cart
   $('.quantidadeProdutoCarrinho').bind('keyup mouseup', function(event) {	 
   
-	 alert("ERoooooouuu");
   
     event.preventDefault();
 
-    $.ajax('http://75a250af.ngrok.io/carts',{
+    $.ajax('http://8c5581b0.ngrok.io/carts',{
 		
       method: 'PATCH',
       data: {
@@ -201,9 +257,51 @@ jQuery(document).ready(function($){
     offset: 95
   })
 
+  	function validar() {
+		
+		var nome = document.getElementById("txtNome").value;
+		var logradouro = document.getElementById("txtLogradouro").value;
+		var numero = document.getElementById("txtNumero").value;
+		var cep = document.getElementById("txtCep").value;
+		var cidade = document.getElementById("txtCidade").value;
+		var email = document.getElementById("txtEmail").value;
+		var telefone = document.getElementById("txtTelefone").value;
+		
+		alert(nome);
+		
+		if(nome == ""){
+			return false;
+		}
+		
+		if(logradouro == ""){
+			return false;
+		}
+	
+		if(numero == ""){
+			return false;
+		}
+		
+		if(cep == ""){
+			return false;
+		}
+		
+		if(cidade == ""){
+			return false;
+		}
+		
+		if(email == ""){
+			return false;
+		}
+		
+		if(telefone == ""){
+			return false;
+		}
+		
+		return true;
+	}
 
   //carrregar elemento carrinho
-  $.ajax('http://75a250af.ngrok.io/carts',{
+  $.ajax('http://8c5581b0.ngrok.io/carts',{
     method: 'GET',
     xhrFields: {
       withCredentials: true
@@ -219,7 +317,7 @@ jQuery(document).ready(function($){
   })
   
    //carrregar lista dos produtos no carrinho
-  $.ajax('http://75a250af.ngrok.io/carts',{
+  $.ajax('http://8c5581b0.ngrok.io/carts',{
     method: 'GET',
     xhrFields: {
       withCredentials: true
