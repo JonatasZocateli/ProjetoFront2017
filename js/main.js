@@ -62,7 +62,7 @@ jQuery(document).ready(function($){
 
   $('#place_order').click(function (e) {
     e.preventDefault()
-    $.ajax('http://8c5581b0.ngrok.io/orders', {
+    $.ajax('http://192.168.150.128:3001/orders', {
       method: 'POST',
       data: {
         name: '',
@@ -118,7 +118,7 @@ jQuery(document).ready(function($){
     var codProduto = document.getElementById("codProduto").innerHTML
     var qtdProduto = document.getElementById("qtdProduto").value
 
-    $.ajax('http://8c5581b0.ngrok.io/carts', {
+    $.ajax('http://192.168.150.128:3001/carts', {
       method: 'POST',
       data: {
         product_id: codProduto,
@@ -133,7 +133,7 @@ jQuery(document).ready(function($){
       var total_price = data["total_price"]
       var total_quantity = data["total_quantity"]
 
-      $("#valorTotal").html(total_price);
+      $("#valorTotal").html(total_price.toFixed(2).replace('.',',') );
       $("#quantidadeCarrinho").html(total_quantity);
     })
   });
@@ -145,7 +145,7 @@ jQuery(document).ready(function($){
 
     alert("Finalizou");
 
-    $.ajax('http://8c5581b0.ngrok.io/confirm', {
+    $.ajax('http://192.168.150.128:3001/confirm', {
       method: 'POST',
       xhrFields: {
         withCredentials: true
@@ -163,7 +163,7 @@ jQuery(document).ready(function($){
 
 	if(validar()){
 		    
-		$.ajax('http://8c5581b0.ngrok.io/orders', {
+		$.ajax('http://192.168.150.128:3001/orders', {
 		  method: 'POST',
 		  data: {
 				nome: document.getElementById("txtNome").value,
@@ -203,7 +203,7 @@ jQuery(document).ready(function($){
 	var codProduto = event.target.dataset.id;
 	console.log(codProduto);
 	
-    $.ajax('http://8c5581b0.ngrok.io/carts', {
+    $.ajax('http://192.168.150.128:3001/carts', {
       method: 'delete',
       data: {
         product_id: codProduto
@@ -222,17 +222,65 @@ jQuery(document).ready(function($){
 	
   });
 
+ //Mostra produto selecionado: início
+
+$(document).ready(function(){
+    $(document).on('click', '.novatentativa', function(){
+  
+  event.preventDefault();
+  
+  var codProduto = event.target.dataset.id;
+  console.log(codProduto);
+
+$.ajax('http://192.168.150.128:3001/products/1', {
+      method: 'get',
+
+      data: {
+        id: codProduto
+      },
+      xhrFields: {
+        withCredentials: true
+      }
+    }).then(function(data){
+      console.log(data);
+
+        
+
+      var codigoProduto = data["id"];
+      var nomeProduto = data["name"];
+      var descricaoProduto = data["description"];
+      var valorProduto = data["price"];
+
+      $("#codigoProduto").html(codigoProduto);
+      //$("#nomeProduto").html(nomeProduto);
+      $("#descricaoProduto").html(descricaoProduto);
+      $("#valorProduto").html(valorProduto);
+      location.href = "produto.html?" +"nomeProduto=" +nomeProduto;
+    });   
+
+    //location.reload();
+   //location.href = "produto.html";
+   
+ //   $("h2").html("Carregado"); 
+ })
+  
+});
+
+  //Mostra produto selecionado: fim
+
+
   // edit product to cart
   $('.quantidadeProdutoCarrinho').bind('keyup mouseup', function(event) {	 
   
   
     event.preventDefault();
+    var codProduto = event.target.dataset.id;
 
-    $.ajax('http://8c5581b0.ngrok.io/carts',{
+    $.ajax('http://192.168.150.128:3001/carts',{
 		
       method: 'PATCH',
       data: {
-        product_id: '1',
+        product_id: codProduto,
         quantity: '200'
       },
       xhrFields: {
@@ -301,7 +349,7 @@ jQuery(document).ready(function($){
 	}
 
   //carrregar elemento carrinho
-  $.ajax('http://8c5581b0.ngrok.io/carts',{
+  $.ajax('http://192.168.150.128:3001/carts',{
     method: 'GET',
     xhrFields: {
       withCredentials: true
@@ -312,12 +360,59 @@ jQuery(document).ready(function($){
     var total_price = data["total_price"]
     var total_quantity = data["total_quantity"]
 
-    $("#valorTotal").html(total_price);
+    $("#valorTotal").html(total_price.toFixed(2).replace('.',',') );
     $("#quantidadeCarrinho").html(total_quantity);
   })
+
+
+
+
+
+//Carregar Produtos na tela de shopping:início
+$.ajax('http://192.168.150.128:3001/products',{
+    method: 'GET',
+    xhrFields: {
+      withCredentials: true
+    }
+  }).then(function(data){
+   console.log(data)
+
+  var produtos = data;   
+
+  var quantidadeProdutos = produtos.length;
+  
+  var produtoLista = [];
+ 
+
+  for(var i=0; i < quantidadeProdutos; i++){
+    var id = produtos[i].id;
+    var nome = produtos[i].name;
+    var preco = produtos[i].price;
+    var precodesconto = (produtos[i].price * 0.9)
+
+    var strHtml = '<div class="col-md-3 col-sm-6" id="'+id+'" >'+
+                    '<div class="single-shop-product">'+
+                        '<div class="product-upper">'+
+                            '<img src="img/'+ nome +'s.jpg" alt="">'+ 
+                        '</div>'+
+                        '<h2><a class="novatentativa" href="produto.html" data-id="'+id+'" >'+ nome +'</a></h2>'+
+                        '<div class="product-carousel-price">' +
+                             '<ins>R$'+ precodesconto.toFixed(2).replace('.',',') +'</ins> <del>+ R$'+ preco.toFixed(2).replace('.',',') + '</del>'+
+                        '</div>' +                     
+                    '</div>'+
+                '</div>';  
+
+      produtoLista.push(strHtml);    
+  }
+ 
+ $("#listaProdutos").html(produtoLista); 
+}) 
+//Carregar Produtos na tela de shopping:fim
+
+
   
    //carrregar lista dos produtos no carrinho
-  $.ajax('http://8c5581b0.ngrok.io/carts',{
+  $.ajax('http://192.168.150.128:3001/carts',{
     method: 'GET',
     xhrFields: {
       withCredentials: true
@@ -355,7 +450,7 @@ jQuery(document).ready(function($){
 
 					'<td class="product-quantity">'+
 						'<div class="quantity buttons_added">'+                                                    
-							'<input type="number" size="2" id="quantidadeProdutoCarrinho" value="'+quantidade+'" class="input-text qty text" title="Qty" min="0" step="1">'+                                       
+							'<input type="number" size="2" id="quantidadeProdutoCarrinho"  value="'+quantidade+'" class="input-text qty text" title="Qty" min="0" step="1">'+                                       
 						'</div>'+
 					'</td>'+
 
