@@ -62,7 +62,7 @@ jQuery(document).ready(function($){
 
   $('#place_order').click(function (e) {
     e.preventDefault()
-    $.ajax('http://192.168.150.128:3001/orders', {
+    $.ajax('http://f6b704a3.ngrok.io/orders', {
       method: 'POST',
       data: {
         name: '',
@@ -118,7 +118,7 @@ jQuery(document).ready(function($){
     var codProduto = document.getElementById("codProduto").innerHTML
     var qtdProduto = document.getElementById("qtdProduto").value
 
-    $.ajax('http://192.168.150.128:3001/carts', {
+    $.ajax('http://f6b704a3.ngrok.io/carts', {
       method: 'POST',
       data: {
         product_id: codProduto,
@@ -145,7 +145,7 @@ jQuery(document).ready(function($){
 
     alert("Finalizou");
 
-    $.ajax('http://192.168.150.128:3001/confirm', {
+    $.ajax('http://f6b704a3.ngrok.io/confirm', {
       method: 'POST',
       xhrFields: {
         withCredentials: true
@@ -163,7 +163,7 @@ jQuery(document).ready(function($){
 
 	if(validar()){
 		    
-		$.ajax('http://192.168.150.128:3001/orders', {
+		$.ajax('http://f6b704a3.ngrok.io/orders', {
 		  method: 'POST',
 		  data: {
 				nome: document.getElementById("txtNome").value,
@@ -203,7 +203,7 @@ jQuery(document).ready(function($){
 	var codProduto = event.target.dataset.id;
 	console.log(codProduto);
 	
-    $.ajax('http://192.168.150.128:3001/carts', {
+    $.ajax('http://f6b704a3.ngrok.io/carts', {
       method: 'delete',
       data: {
         product_id: codProduto
@@ -232,7 +232,7 @@ $(document).ready(function(){
   var codProduto = event.target.dataset.id;
   console.log(codProduto);
 
-$.ajax('http://192.168.150.128:3001/products/1', {
+$.ajax('http://f6b704a3.ngrok.io/products/1', {
       method: 'get',
 
       data: {
@@ -276,7 +276,7 @@ $.ajax('http://192.168.150.128:3001/products/1', {
     event.preventDefault();
     var codProduto = event.target.dataset.id;
 
-    $.ajax('http://192.168.150.128:3001/carts',{
+    $.ajax('http://f6b704a3.ngrok.io/carts',{
 		
       method: 'PATCH',
       data: {
@@ -349,7 +349,7 @@ $.ajax('http://192.168.150.128:3001/products/1', {
 	}
 
   //carrregar elemento carrinho
-  $.ajax('http://192.168.150.128:3001/carts',{
+  $.ajax('http://f6b704a3.ngrok.io/carts',{
     method: 'GET',
     xhrFields: {
       withCredentials: true
@@ -369,7 +369,7 @@ $.ajax('http://192.168.150.128:3001/products/1', {
 
 
 //Carregar Produtos na tela de shopping:início
-$.ajax('http://192.168.150.128:3001/products',{
+$.ajax('http://f6b704a3.ngrok.io/products',{
     method: 'GET',
     xhrFields: {
       withCredentials: true
@@ -409,10 +409,8 @@ $.ajax('http://192.168.150.128:3001/products',{
 }) 
 //Carregar Produtos na tela de shopping:fim
 
-
-  
    //carrregar lista dos produtos no carrinho
-  $.ajax('http://192.168.150.128:3001/carts',{
+  $.ajax('http://f6b704a3.ngrok.io/carts',{
     method: 'GET',
     xhrFields: {
       withCredentials: true
