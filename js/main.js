@@ -268,32 +268,34 @@ jQuery(document).ready(function($){
 
 
 // edit product to cart
-$('.quantidadeProdutoCarrinho').bind('keyup mouseup', function(event) {	 
-
-
-  event.preventDefault();
-  var codProduto = event.target.dataset.id;
+$(document).on('change', '.quantidadeProdutoCarrinho', function (e) {
+  var codProduto = e.target.dataset.id;
+  if (!codProduto) {
+    return
+  };
 
   $.ajax('http://dev.udacity.com:3001/carts',{
-
     method: 'PATCH',
     data: {
       product_id: codProduto,
-      quantity: '200'
+      quantity: e.target.value
     },
     xhrFields: {
       withCredentials: true
     }
   }).then(function(data){
+    var total_price = data["total_price"]
+    var total_quantity = data["total_quantity"]
 
+    $("#valorTotal").html(total_price);
+    $("#quantidadeCarrinho").html(total_quantity);
 
-    alert(data);
-    /*
-      var total_price = data["total_price"]
-      var total_quantity = data["total_quantity"]
+    var produto = data["products"].find(p => p.id == codProduto)
+    var subtotal = produto['price'] * produto['quantity']
+    subtotal = subtotal.toFixed(2).replace('.',',')
 
-      $("#valorTotal").html(total_price);
-      $("#quantidadeCarrinho").html(total_quantity);*/
+    $(`.subtotalProduto[data-id="${codProduto}"]`).html(`R$ ${subtotal}`)
+    $('th.product-subtotal-amount').html(`R$ ${total_price.toFixed(2).replace('.', ',')}`)
   })
 });
 
@@ -448,12 +450,12 @@ $.ajax('http://dev.udacity.com:3001/carts',{
 
       '<td class="product-quantity">'+
       '<div class="quantity buttons_added">'+                                                    
-      '<input type="number" size="2" id="quantidadeProdutoCarrinho"  value="'+quantidade+'" class="input-text qty text" title="Qty" min="0" step="1">'+                                       
+      '<input type="number" size="2" data-id="'+id+'" class="quantidadeProdutoCarrinho"  value="'+quantidade+'" class="input-text qty text" title="Qty" min="0" step="1">'+                                       
       '</div>'+
       '</td>'+
 
       '<td class="product-subtotal">'+
-      '<span class="amount" id="subtotalProduto">R$ '+ subtotal + '</span>'+ 
+      '<span class="amount subtotalProduto" data-id="'+id+'">R$ '+ subtotal + '</span>'+ 
       '</td>'+
 
       '</tr>'
@@ -477,7 +479,7 @@ $.ajax('http://dev.udacity.com:3001/carts',{
     '</td>'+
 
     '<td class="product-quantity">'+						
-    '<th class="product-subtotal">R$ '+ totalCarrinho + '</th>'
+    '<th class="product-subtotal-amount">R$ '+ totalCarrinho + '</th>'
   '</td>'+					
 
     '</tr>';
