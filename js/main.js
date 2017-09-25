@@ -409,6 +409,8 @@ $.ajax('http://f6b704a3.ngrok.io/products',{
 }) 
 //Carregar Produtos na tela de shopping:fim
 
+
+  
    //carrregar lista dos produtos no carrinho
   $.ajax('http://f6b704a3.ngrok.io/carts',{
     method: 'GET',
