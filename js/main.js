@@ -143,7 +143,6 @@ jQuery(document).ready(function($){
 
     event.preventDefault();
 
-    alert("Finalizou");
 
     $.ajax('http://dev.udacity.com:3001/confirm', {
       method: 'POST',
@@ -315,7 +314,6 @@ function validar() {
   var email = document.getElementById("txtEmail").value;
   var telefone = document.getElementById("txtTelefone").value;
 
-  alert(nome);
 
   if(nome == ""){
     return false;
