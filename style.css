@@ -990,3 +990,9 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
 .pagination > li > a, .pagination > li > span {
   color: #1abc9c;
 }
+
+#map {
+  width: 400px;
+  height: 250px;
+  // overflow: auto;
+}

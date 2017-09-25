@@ -62,7 +62,7 @@ jQuery(document).ready(function($){
 
   $('#place_order').click(function (e) {
     e.preventDefault()
-    $.ajax('http://f6b704a3.ngrok.io/orders', {
+    $.ajax('http://dev.udacity.com:3001/orders', {
       method: 'POST',
       data: {
         name: '',
@@ -118,7 +118,7 @@ jQuery(document).ready(function($){
     var codProduto = document.getElementById("codProduto").innerHTML
     var qtdProduto = document.getElementById("qtdProduto").value
 
-    $.ajax('http://f6b704a3.ngrok.io/carts', {
+    $.ajax('http://dev.udacity.com:3001/carts', {
       method: 'POST',
       data: {
         product_id: codProduto,
@@ -145,7 +145,7 @@ jQuery(document).ready(function($){
 
     alert("Finalizou");
 
-    $.ajax('http://f6b704a3.ngrok.io/confirm', {
+    $.ajax('http://dev.udacity.com:3001/confirm', {
       method: 'POST',
       xhrFields: {
         withCredentials: true
@@ -163,7 +163,7 @@ jQuery(document).ready(function($){
 
       if(validar()){
 
-        $.ajax('http://f6b704a3.ngrok.io/orders', {
+        $.ajax('http://dev.udacity.com:3001/orders', {
           method: 'POST',
           data: {
             nome: document.getElementById("txtNome").value,
@@ -203,7 +203,7 @@ jQuery(document).ready(function($){
       var codProduto = event.target.dataset.id;
       console.log(codProduto);
 
-      $.ajax('http://f6b704a3.ngrok.io/carts', {
+      $.ajax('http://dev.udacity.com:3001/carts', {
         method: 'delete',
         data: {
           product_id: codProduto
@@ -232,7 +232,7 @@ jQuery(document).ready(function($){
       var codProduto = event.target.dataset.id;
       console.log(codProduto);
 
-      $.ajax(`http://f6b704a3.ngrok.io/products/${codProduto}`, {
+      $.ajax(`http://dev.udacity.com:3001/products/${codProduto}`, {
         method: 'get',
         data: {
           id: codProduto
@@ -274,7 +274,7 @@ $('.quantidadeProdutoCarrinho').bind('keyup mouseup', function(event) {
   event.preventDefault();
   var codProduto = event.target.dataset.id;
 
-  $.ajax('http://f6b704a3.ngrok.io/carts',{
+  $.ajax('http://dev.udacity.com:3001/carts',{
 
     method: 'PATCH',
     data: {
@@ -347,7 +347,7 @@ function validar() {
 }
 
 //carrregar elemento carrinho
-$.ajax('http://f6b704a3.ngrok.io/carts',{
+$.ajax('http://dev.udacity.com:3001/carts',{
   method: 'GET',
   xhrFields: {
     withCredentials: true
@@ -367,7 +367,7 @@ $.ajax('http://f6b704a3.ngrok.io/carts',{
 
 
 //Carregar Produtos na tela de shopping:início
-$.ajax('http://f6b704a3.ngrok.io/products',{
+$.ajax('http://dev.udacity.com:3001/products',{
   method: 'GET',
   xhrFields: {
     withCredentials: true
@@ -410,7 +410,7 @@ $.ajax('http://f6b704a3.ngrok.io/products',{
 
 
 //carrregar lista dos produtos no carrinho
-$.ajax('http://f6b704a3.ngrok.io/carts',{
+$.ajax('http://dev.udacity.com:3001/carts',{
   method: 'GET',
   xhrFields: {
     withCredentials: true

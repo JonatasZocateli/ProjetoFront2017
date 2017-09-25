@@ -113,33 +113,15 @@
                                     
                                     <div role="tabpanel">
                                         <ul class="product-tab" role="tablist">
-                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Saiba Mais</a></li>                                           
+                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Saiba Mais</a></li>
                                         </ul>
                                         <div class="tab-content">
                                             <div role="tabpanel" class="tab-pane fade in active" id="home">
                                                 <h2>Cenoura</h2>  
                                                 <p>As cenouras são comidas cruas, inteiras, ou como parte de saladas, e são também cozidas em sopas e refogados. A parte folhosa da planta não é comida na maioria das culturas, mas é comestível.</p>
                                                 <p>As cenouras são grandes fontes de fibra dietética, antioxidantes, minerais e β-caroteno. Este último, responsável pela coloração alaranjada característica do vegetal, é uma provitamina A (substância que dá origem à vitamina A dentro de um organismo vivo). Ele ajuda o desempenho dos receptores da retina, melhorando a visão. Também ajuda a manter o bom estado da pele e das mucosas. É um antioxidante lipossolúvel que neutraliza os radicais livres, combinando-se diretamente com eles, o que aumenta a eficácia do sistema imunitário.</p>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane fade" id="profile">
-                                                <h2>Reviews</h2>
-                                                <div class="submit-review">
-                                                    <p><label for="name">Name</label> <input name="name" type="text"></p>
-                                                    <p><label for="email">Email</label> <input name="email" type="email"></p>
-                                                    <div class="rating-chooser">
-                                                        <p>Your rating</p>
-
-                                                        <div class="rating-wrap-post">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                    <p><label for="review">Your review</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
-                                                    <p><input type="submit" value="Submit"></p>
-                                                </div>
+                                                <h2>Mapa da feira</h2>  
+                                                <div id="map"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -220,5 +202,21 @@
     
     <!-- Main Script -->
     <script src="js/main.js"></script>
+    <script>
+      function initMap() {
+        var pinheiros = { lat: -23.5655752, lng: -46.6924577 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          center: pinheiros,
+          draggable: false
+        });
+        var marker = new google.maps.Marker({
+          position: pinheiros,
+          map: map
+        });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCa7NVJIEYBvjMxnwnkwl9I2YAiPyi59q4&callback=initMap">
+    </script>
   </body>
 </html>
