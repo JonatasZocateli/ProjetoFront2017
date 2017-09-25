@@ -201,5 +201,20 @@
     
     <!-- Main Script -->
     <script src="js/main.js"></script>
-  </body>
+	<script>
+      function initMap() {
+        var pinheiros = { lat: -23.5655752, lng: -46.6924577 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          center: pinheiros,
+          draggable: false
+        });
+        var marker = new google.maps.Marker({
+          position: pinheiros,
+          map: map
+        });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCa7NVJIEYBvjMxnwnkwl9I2YAiPyi59q4&callback=initMap">
+    </script>
 </html>
