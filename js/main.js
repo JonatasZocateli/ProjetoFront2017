@@ -62,7 +62,7 @@ jQuery(document).ready(function($){
 
   $('#place_order').click(function (e) {
     e.preventDefault()
-    $.ajax('http://dev.udacity.com:3001/orders', {
+    $.ajax('http://dev.organikos.com:3001/orders', {
       method: 'POST',
       data: {
         name: '',
@@ -118,7 +118,7 @@ jQuery(document).ready(function($){
     var codProduto = document.getElementById("codProduto").innerHTML
     var qtdProduto = document.getElementById("qtdProduto").value
 
-    $.ajax('http://dev.udacity.com:3001/carts', {
+    $.ajax('http://dev.organikos.com:3001/carts', {
       method: 'POST',
       data: {
         product_id: codProduto,
@@ -144,7 +144,7 @@ jQuery(document).ready(function($){
     event.preventDefault();
 
 
-    $.ajax('http://dev.udacity.com:3001/confirm', {
+    $.ajax('http://dev.organikos.com:3001/confirm', {
       method: 'POST',
       xhrFields: {
         withCredentials: true
@@ -162,7 +162,7 @@ jQuery(document).ready(function($){
 
       if(validar()){
 
-        $.ajax('http://dev.udacity.com:3001/orders', {
+        $.ajax('http://dev.organikos.com:3001/orders', {
           method: 'POST',
           data: {
             nome: document.getElementById("txtNome").value,
@@ -202,7 +202,7 @@ jQuery(document).ready(function($){
       var codProduto = event.target.dataset.id;
       console.log(codProduto);
 
-      $.ajax('http://dev.udacity.com:3001/carts', {
+      $.ajax('http://dev.organikos.com:3001/carts', {
         method: 'delete',
         data: {
           product_id: codProduto
@@ -231,7 +231,7 @@ jQuery(document).ready(function($){
       var codProduto = event.target.dataset.id;
       console.log(codProduto);
 
-      $.ajax(`http://dev.udacity.com:3001/products/${codProduto}`, {
+      $.ajax(`http://dev.organikos.com:3001/products/${codProduto}`, {
         method: 'get',
         data: {
           id: codProduto
@@ -273,7 +273,7 @@ $(document).on('change', '.quantidadeProdutoCarrinho', function (e) {
     return
   };
 
-  $.ajax('http://dev.udacity.com:3001/carts',{
+  $.ajax('http://dev.organikos.com:3001/carts',{
     method: 'PATCH',
     data: {
       product_id: codProduto,
@@ -347,7 +347,7 @@ function validar() {
 }
 
 //carrregar elemento carrinho
-$.ajax('http://dev.udacity.com:3001/carts',{
+$.ajax('http://dev.organikos.com:3001/carts',{
   method: 'GET',
   xhrFields: {
     withCredentials: true
@@ -367,7 +367,7 @@ $.ajax('http://dev.udacity.com:3001/carts',{
 
 
 //Carregar Produtos na tela de shopping:início
-$.ajax('http://dev.udacity.com:3001/products',{
+$.ajax('http://dev.organikos.com:3001/products',{
   method: 'GET',
   xhrFields: {
     withCredentials: true
@@ -410,7 +410,7 @@ $.ajax('http://dev.udacity.com:3001/products',{
 
 
 //carrregar lista dos produtos no carrinho
-$.ajax('http://dev.udacity.com:3001/carts',{
+$.ajax('http://dev.organikos.com:3001/carts',{
   method: 'GET',
   xhrFields: {
     withCredentials: true
